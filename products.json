@@ -1,0 +1,50 @@
+[
+    {
+        "name": "X-Box",
+        "description": "Game console created by Microsoft",
+        "price": 400,
+        "categories": ["gaming","console"]
+    },
+    {
+        "name": "Playstation",
+        "description": "Game console created by Sony",
+        "price": 499,
+        "categories": ["gaming","console"]
+    },
+    {
+        "name": "Jeans",
+        "description": "Denim pants",
+        "price": 50,
+        "categories": ["apparel"]
+    },
+    {
+        "name": "Sunglasses",
+        "description": "Shades created by Oakley",
+        "price": 250,
+        "categories": ["apparel"]
+    },
+    {
+        "name": "Cookie",
+        "description": "A tasty cookie with chocolate chips",
+        "price": 2,
+        "categories": ["food"]
+    },
+    {
+        "name": "Mario Shirt",
+        "description": "A t-shirt with Mario on it",
+        "price": 25,
+        "categories": ["gaming","apparel"]
+    },
+    {
+        "name": "Pizza",
+        "description": "A medium pizza pie",
+        "price": 11,
+        "categories": ["food"]
+    },
+    {
+        "name": "Ghost Costume",
+        "description": "A cheap ghost costume for Halloween",
+        "price": 20,
+        "categories": ["apparel"]
+    }
+]

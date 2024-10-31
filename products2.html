@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Products 2 - Parse JSON</title>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"   
+	integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   
+	crossorigin="anonymous"></script>
+
+	<style type="text/css">
+		body,html {font-size: 24px;}
+		li {font-size: 20px; list-style-type: none; border: 2px solid #8af765; max-width: 400px; margin-bottom: 10px}
+        .name {font-size: 40px; text-decoration: bold}
+	</style>
+</head>
+
+<body>
+	<script language="javascript">
+	$.get("https://connorg2404.github.io/CS20-HW6/products.json",function(data) {
+			str = "<ul>";
+			data.forEach(function(product) { 
+			str += "<li>"
+            	+ "<span class='name'>" + product.name + " - $" + product.price + "</span><br>"
+                + product.description + "<br>"
+                + "Categories: " + product.categories.join(", ")
+                + "<br><br>" + "</li>";
+			}) 
+		str += "</ul>";
+		document.getElementById('json-list').innerHTML = str;
+	})
+</script>
+	<div id="json-list">&nbsp;</div>
+</body>
+</html>

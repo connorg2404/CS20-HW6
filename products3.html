@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Products 3 - Filter by Category</title>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+            crossorigin="anonymous">
+    </script>
+    <style type="text/css">
+        body, html { font-size: 30px }
+        select { font-size: 20px }
+        button { font-size: 15px }
+        .name { font-size: 24px }
+        ul { border: 2px solid #8af765; max-width: 200px }
+        li { list-style-type: decimal }
+    </style>
+</head>
+<body>
+    <div class="filter">
+        Select a Category: <select id="categories"></select>
+        <button id="filterButton">Filter</button>
+    </div>
+
+    <script language="javascript">
+        // Get our products and create a set of all possible categories to ignore duplicates.
+        $.get("https://connorg2404.github.io/CS20-HW6/products.json", function(data) {
+            categories = new Set();
+            data.forEach(function(product) {
+                product.categories.forEach(function(category) {
+                    categories.add(category);
+                });
+            });
+                
+            // Add our categories to the drop down menu.
+            categories.forEach(function(category) {
+                $('#categories').append(`<option value="${category}">${category}</option>`);
+            });
+
+            // Code the filter button to filter the products when pressed.
+            $('#filterButton').click(function() {
+                choice = $('#categories').val();
+                resultHtml = "<ul>";
+                data.forEach(function(product) {
+                    if (product.categories.includes(choice)) {
+                        resultHtml += `<li class="name">${product.name}</li>`;
+                    }
+                });
+                resultHtml += "</ul>";
+                $('#items').html(resultHtml);
+            });
+        });
+    </script>
+
+    <div id="items"></div>
+</body>
+</html>

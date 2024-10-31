@@ -8,12 +8,14 @@
             crossorigin="anonymous">
     </script>
     <style type="text/css">
-        body, html { font-size: 30px }
+        body,html {font-size: 24px}
+        .name {font-size: 40px; text-decoration: bold}
+        .names {font-size: 24px }
         select { font-size: 20px }
         button { font-size: 15px }
-        .name { font-size: 24px }
-        ul { border: 2px solid #8af765; max-width: 200px }
-        li { list-style-type: decimal }
+        ul.filtered { border: 2px solid #70d4ef; max-width: 200px }
+        li.names { list-style-type: decimal }
+        li.pros { font-size: 20px; list-style-type: none; border: 2px solid #8af765; max-width: 400px; margin-bottom: 10px }
     </style>
 </head>
 <body>
@@ -23,8 +25,19 @@
     </div>
 
     <script language="javascript">
-        // Get our products and create a set of all possible categories to ignore duplicates.
-        $.get("https://connorg2404.github.io/CS20-HW6/products.json", function(data) {
+	    $.get("https://connorg2404.github.io/CS20-HW6/products.json",function(data) {
+			str = "<ul>";
+			data.forEach(function(product) { 
+			str += "<li class='pros'>"
+            	+ "<span class='name'>" + product.name + " - $" + product.price + "</span><br>"
+                + product.description + "<br>"
+                + "Categories: " + product.categories.join(", ")
+                + "<br><br>" + "</li>";
+			}) 
+		    str += "</ul>";
+		    document.getElementById('json-list').innerHTML = str;
+
+            // Get our products and create a set of all possible categories to ignore duplicates.
             categories = new Set();
             data.forEach(function(product) {
                 product.categories.forEach(function(category) {
@@ -40,10 +53,10 @@
             // Code the filter button to filter the products when pressed.
             $('#filterButton').click(function() {
                 choice = $('#categories').val();
-                resultHtml = "<ul>";
+                resultHtml = "<ul class='filtered'>";
                 data.forEach(function(product) {
                     if (product.categories.includes(choice)) {
-                        resultHtml += `<li class="name">${product.name}</li>`;
+                        resultHtml += `<li class="names">${product.name}</li>`;
                     }
                 });
                 resultHtml += "</ul>";
@@ -53,5 +66,6 @@
     </script>
 
     <div id="items"></div>
+    <div id="json-list">&nbsp;</div>
 </body>
 </html>
